@@ -1,9 +1,9 @@
 #import socket module
-
+import socket
 from socket import *
 
 serverPort = 5555
-serverSocket = socket(AF_INET, STOCK_STREAM)
+serverSocket = socket(AF_INET, SOCK_STREAM)
 
 #Prepare a server socket
 
@@ -21,15 +21,15 @@ while True:
 		outputdata = f.read()
 		print outputdata
 		#SEND one HTTP header line into socket
-		connectionSocket.send('HTTP/1.1 200 OK\n')
+		connectionSocket.send('HTTP/1.1 200 OK\r\n\r\n')
 		#Send the content of the requested file to the client
-		for i in range(0, len(outputdata[i])):
+		for i in range(0, len(outputdata)):
 			connectionSocket.send(outputdata[i])
 		connectionSocket.close()
 	except IOError:
 		#Send response message for the file not found
 		print '404 Not Found'
-		connectionSocket.send('\HTTP/1.1 404 Not Found\n')
+		connectionSocket.send('HTTP/1.1 404 Not Found\n')
 		#Close clinet socket
 		connectionSocket.close()
 		
