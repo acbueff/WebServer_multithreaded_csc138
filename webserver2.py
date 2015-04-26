@@ -1,18 +1,18 @@
 #import socket module
 import socket
 from socket import *
-
+#CREATE MAIN THREAD
 serverPort = 5555
 serverSocket = socket(AF_INET, SOCK_STREAM)
 
 #Prepare a server socket
-
 serverSocket.bind(('127.0.0.1',serverPort))
 serverSocket.listen(1)
 
 while True:
 	#Establish the connection
 	print 'Ready to serve...\n'
+	#CREATE TCP CONNECTION THROUGH ANOTHER PORT
 	connectionSocket,addr = serverSocket.accept()
 	try:
 		message = connectionSocket.recv(2048)
