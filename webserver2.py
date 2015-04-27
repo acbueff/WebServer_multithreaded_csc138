@@ -1,12 +1,17 @@
 #import socket module
 import socket
-from socket import *
+
 #CREATE MAIN THREAD
+print socket.gethostbyname(socket.getfqdn())
+host =  socket.gethostbyname(socket.gethostname())
 serverPort = 5555
+from socket import *
 serverSocket = socket(AF_INET, SOCK_STREAM)
 
 #Prepare a server socket
-serverSocket.bind(('127.0.0.1',serverPort))
+#print socket.gethostbyname(socket.gethostname(host))
+
+serverSocket.bind((host,serverPort))
 serverSocket.listen(1)
 
 while True:
